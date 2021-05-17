@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.button2.setOnClickListener {
             mainScope.launch {
-                user1.age = 42
+                user1.age = 42  //update age
                 updateUser(user1)
                 loadAllUsers()
                 binding.textView.text = allData
@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         binding.button3.setOnClickListener {
             mainScope.launch {
                 deleteAllUser()
+                binding.textView.text = ""
             }
         }
     }
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         withContext(Dispatchers.IO) {
             for (user in userDao.loadAllUsers()) {
                 Log.d("Main", user.toString())
-                allData += user.toString()
+                allData += user.toString() + "\n"
             }
         }
     }
